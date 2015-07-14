@@ -21,16 +21,11 @@ angular.element(document).ready(function() {
     'app.services',
     'app.directives'
   ];
-
   // mount on window for testing
-  window.app = angular.module('app', requires);
-
+  window.app = angular.module('app', requires); 
   angular.module('app').constant('AppSettings', require('./constants'));
-
   angular.module('app').config(require('./on_config'));
-
   angular.module('app').run(require('./on_run'));
-
   angular.bootstrap(document, ['app']);
 
 });

@@ -8,7 +8,7 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
   $locationProvider.html5Mode(true);
 
   $stateProvider
-  .state('Home', {
+  .state('categoryRegister', {
     url: '/',
     controller: 'ExampleCtrl as home',
     templateUrl: 'home.html',

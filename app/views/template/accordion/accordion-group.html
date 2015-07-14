@@ -1,0 +1,6 @@
+<li class="sub-menu">
+	<a href class="accordion-toggle" ng-click="toggleOpen()" accordion-transclude="heading">
+		<span ng-class="{'text-muted': isDisabled}">{{heading}}</span>                          
+    </a>
+	<ul class="sub panel-collapse" collapse="!isOpen" ng-transclude></ul>
+</li>
