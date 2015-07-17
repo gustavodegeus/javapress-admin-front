@@ -4938,3 +4938,15 @@ span.customSelect.changed {
 .customSelectInner {
     background:url(../images/customSelect-arrow.gif) no-repeat center right;
 }
+
+.category-modal .row{
+    margin-bottom: 10px;
+}
+
+.category-filter .row{
+    margin-bottom: 10px;
+}
+
+.modal-sm {
+    width: 400px;
+}
