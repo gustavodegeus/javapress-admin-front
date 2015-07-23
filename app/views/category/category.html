@@ -16,21 +16,19 @@
 	<div class="row">
 		<div class="col-lg-1">Tipo:</div>
 		<div class="col-lg-5">
-			<ui-select ng-model="category.type.selected" ng-disabled="disabled">
-				<ui-select-match placeholder="Selectione o tipo">{{$select.selected.name}}</ui-select-match>
-				<ui-select-choices repeat="type in category.type | filter: $select.search">
-					<span ng-bind-html="type.name | highlight: $select.search"></span>
-					<small ng-bind-html="type.code | highlight: $select.search"></small>
+			<ui-select ng-model="category.selected" ng-disabled="disabled">
+				<ui-select-match placeholder="Selectione o tipo">{{$select.selected.type}}</ui-select-match>
+				<ui-select-choices repeat="category in categories | filter: $select.search">
+					{{category.type}}
 				</ui-select-choices>
 			</ui-select>
 		</div>
 		<div class="col-lg-1">Grupo:</div>
 		<div class="col-lg-5">
-			<ui-select ng-model="category.type.selected" ng-disabled="disabled">
-				<ui-select-match placeholder="Selectione o grupo">{{$select.selected.name}}</ui-select-match>
-				<ui-select-choices repeat="type in category.type | filter: $select.search">
-					<span ng-bind-html="type.name | highlight: $select.search"></span>
-					<small ng-bind-html="type.code | highlight: $select.search"></small>
+			<ui-select ng-model="category.selected" ng-disabled="disabled">
+				<ui-select-match placeholder="Selectione o tipo">{{$select.selected.group}}</ui-select-match>
+				<ui-select-choices repeat="category in categories | filter: $select.search">
+					{{category.group}}
 				</ui-select-choices>
 			</ui-select>
 		</div>
@@ -58,10 +56,10 @@
 						<th>
 							<i class="icon_cogs"></i>Ações</th>
 					</tr>
-					<tr>
-						<td>Bolo</td>
-						<td>Post</td>
-						<td>Sobremesas</td>
+					<tr ng-repeat="category in categories">
+						<td>{{category.name}}</td>
+						<td>{{category.type}}</td>
+						<td>{{category.group}}</td>
 						<td>
 							<div class="btn-group">
 								<a class="btn btn-success" href="#"><i class="icon_check_alt2"></i></a>

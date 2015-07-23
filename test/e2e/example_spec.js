@@ -14,8 +14,8 @@ describe('E2E: Example', function() {
   });
 
   it('should show the number defined in the controller', function() {
-    var element = browser.findElement(by.css('.number-example'));
-    expect(element.getText()).toEqual('1234');
+    var element = browser.findElement(by.css('.heading'));
+    expect(element.getText()).toEqual('Welcome to JavaPress Admin');
   });
 
 });
