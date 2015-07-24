@@ -16,27 +16,23 @@
 	<div class="row">
 		<div class="col-lg-1">Tipo:</div>
 		<div class="col-lg-5">
-			<ui-select ng-model="category.selected" ng-disabled="disabled">
+			<ui-select ng-model="category.type" ng-disabled="disabled">
 				<ui-select-match placeholder="Selectione o tipo">{{$select.selected.type}}</ui-select-match>
-				<ui-select-choices repeat="category in categories | filter: $select.search">
-					{{category.type}}
-				</ui-select-choices>
+				<ui-select-choices repeat="category.type as category in categories | filter: $select.search">{{category.type}}</ui-select-choices>
 			</ui-select>
 		</div>
 		<div class="col-lg-1">Grupo:</div>
 		<div class="col-lg-5">
-			<ui-select ng-model="category.selected" ng-disabled="disabled">
-				<ui-select-match placeholder="Selectione o tipo">{{$select.selected.group}}</ui-select-match>
-				<ui-select-choices repeat="category in categories | filter: $select.search">
-					{{category.group}}
-				</ui-select-choices>
+			<ui-select ng-model="category.group" ng-disabled="disabled">
+				<ui-select-match placeholder="Selectione o grupo">{{$select.selected.group}}</ui-select-match>
+				<ui-select-choices repeat="category.group as category in categories | filter: $select.search">{{category.group}}</ui-select-choices>
 			</ui-select>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="input-group">
-				<input type="text" ng-model="dynamicPopover.content" class="form-control" placeholder="Categoria">
+				<input type="text" ng-model="category.name" class="form-control" placeholder="Categoria">
 				<span class="input-group-btn">
 					<a class="btn btn-primary" href="" title="Buscar Categoria">Buscar</a>
 				</span>

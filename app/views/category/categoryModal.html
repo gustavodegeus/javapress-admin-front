@@ -5,10 +5,10 @@
 	<div class="row">
 		<div class="col-md-2">Tipo:</div>
 		<div class="col-md-10">
-			<ui-select ng-model="category.selected" ng-disabled="disabled">
+			<ui-select ng-model="category.type" ng-disabled="disabled">
 				<ui-select-match placeholder="Selectione o tipo">{{$select.selected.type}}</ui-select-match>
-				<ui-select-choices repeat="category in categories | filter: $select.search">
-					<span ng-bind-html="category.type | highlight: $select.search"></span>
+				<ui-select-choices repeat="category.type as category in categories | filter: $select.search">
+						{{category.type}}
 				</ui-select-choices>
 			</ui-select>
 		</div>
@@ -16,11 +16,10 @@
 	<div class="row">
 		<div class="col-md-2">Grupo:</div>
 		<div class="col-md-10">
-			<ui-select ng-model="country.selected" ng-disabled="disabled">
-				<ui-select-match placeholder="Selectione o grupo">{{$select.selected.name}}</ui-select-match>
-				<ui-select-choices repeat="country in countries | filter: $select.search">
-					<span ng-bind-html="country.name | highlight: $select.search"></span>
-					<small ng-bind-html="country.code | highlight: $select.search"></small>
+			<ui-select ng-model="category.group" ng-disabled="disabled">
+				<ui-select-match placeholder="Selectione o grupo">{{$select.selected.group}}</ui-select-match>
+				<ui-select-choices repeat="category.group as category in categories | filter: $select.search">
+					{{category.group}}
 				</ui-select-choices>
 			</ui-select>
 		</div>
@@ -28,11 +27,11 @@
 	<div class="row">
 		<div class="col-md-2">Nome:</div>
 		<div class="col-md-10">
-			<input type="text" ng-model="dynamicPopover.content" class="form-control">
+			<input type="text" ng-model="category.name" class="form-control">
 		</div>
 	</div>
 </div>
 <div class="modal-footer">
 	<button class="btn btn-warning" ng-click="cancel()">Cancelar</button>
-	<button class="btn btn-primary" ng-click="ok()">Salvar</button>
+	<button class="btn btn-primary" ng-click="saveCategory()">Salvar</button>
 </div>
