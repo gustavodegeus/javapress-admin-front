@@ -1,8 +1,8 @@
 'use strict';
 
 var AppSettings = {
-  appTitle: 'Example Application',
-  apiUrl: '/api/v1'
+  appTitle: 'JavaPress - Admin',
+  apiUrl: 'javapress-backend.herokuapp.com'
 };
 
 module.exports = AppSettings;

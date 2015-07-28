@@ -6,6 +6,7 @@ var angular = require('angular');
 require('angular-ui-router');
 require('angular-bootstrap');
 require('ng-ui-select');
+require('angular-resource');
 require('./templates');
 require('./controllers/_index');
 require('./services/_index');
@@ -18,6 +19,7 @@ angular.element(document).ready(function() {
     'ui.router',
     'ui.bootstrap',
     'ui.select',
+    'ngResource',
     'templates',
     'app.controllers',
     'app.services',

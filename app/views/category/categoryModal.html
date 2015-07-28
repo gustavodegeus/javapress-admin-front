@@ -1,37 +1,33 @@
 <div class="modal-header">
 	<h3 class="modal-title">Nova categoria</h3>
 </div>
-<div class="modal-body category-modal">
-	<div class="row">
-		<div class="col-md-2">Tipo:</div>
-		<div class="col-md-10">
-			<ui-select ng-model="category.type" ng-disabled="disabled">
-				<ui-select-match placeholder="Selectione o tipo">{{$select.selected.type}}</ui-select-match>
-				<ui-select-choices repeat="category.type as category in categories | filter: $select.search">
-						{{category.type}}
-				</ui-select-choices>
-			</ui-select>
+<form name="categoryModalCtrl.categoryForm">
+	<div class="modal-body category-modal">
+		<div class="row">
+			<div class="col-md-2" ng-class="{ 'has-error': categoryForm.type.$invalid && categoryForm.type.$dirty }">Grupo:</div>
+			<div class="col-md-10">
+				<select class="form-control" ng-model="categoryModalCtrl.category.group" ng-options="categoryGroup for categoryGroup in categoryModalCtrl.categoryGroups"  ng-required="true">
+					<option value="">Selecione um grupo</option>
+				</select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">Tipo:</div>
+			<div class="col-md-10">
+				<select name="type" class="form-control" ng-model="categoryModalCtrl.category.type" ng-options="categoryType for categoryType in categoryModalCtrl.categoryTypes">
+					<option value="">Selecione o tipo</option>
+				</select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">Nome:</div>
+			<div class="col-md-10" ng-class="{ 'has-error': categoryForm.name.$invalid && categoryForm.name.$dirty }">
+				<input type="text" name="name" ng-model="categoryModalCtrl.category.name" class="form-control" ng-required="true">
+			</div>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-md-2">Grupo:</div>
-		<div class="col-md-10">
-			<ui-select ng-model="category.group" ng-disabled="disabled">
-				<ui-select-match placeholder="Selectione o grupo">{{$select.selected.group}}</ui-select-match>
-				<ui-select-choices repeat="category.group as category in categories | filter: $select.search">
-					{{category.group}}
-				</ui-select-choices>
-			</ui-select>
-		</div>
+	<div class="modal-footer">
+		<button class="btn btn-warning" ng-click="categoryModalCtrl.cancel()">Cancelar</button>
+		<button class="btn btn-primary" ng-click="categoryModalCtrl.saveCategory()" ng-disabled="categoryForm.$invalid">Salvar</button>
 	</div>
-	<div class="row">
-		<div class="col-md-2">Nome:</div>
-		<div class="col-md-10">
-			<input type="text" ng-model="category.name" class="form-control">
-		</div>
-	</div>
-</div>
-<div class="modal-footer">
-	<button class="btn btn-warning" ng-click="cancel()">Cancelar</button>
-	<button class="btn btn-primary" ng-click="saveCategory()">Salvar</button>
-</div>
+</form>

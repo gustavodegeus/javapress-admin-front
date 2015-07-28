@@ -5,47 +5,35 @@ var controllersModule = require('./_index');
 /**
  * @ngInject
  */
-function CategoryCtrl($scope, $modal) {
+function CategoryCtrl($modal, CategoryService) {
   // ViewModel
-  //var vm = this;
-  $scope.category = {};
-  $scope.categories = [{
-    type: 'Bla',
-    group: 'Chalablau',
-    name: 'Test'
-  },
-    {
-      type: 'Bla 2',
-      group: 'Chalablau 2',
-      name: 'Test 2'
-    },
-    {
-      type: 'Bla 3',
-      group: 'Chalablau 3',
-      name: 'Test 3'
-    }];
+  var vm = this;
+  vm.category = {};
+  vm.categoryGroups = CategoryService.findCategoryGroups();
+  vm.categoryTypes = CategoryService.findCategoryTypes();
+  vm.categories = CategoryService.findCategories();
 
-  $scope.openCategoryModal = function () {
-    var categoryModalInstance = $modal.open({
-      animation: true,
+  vm.editCategory = function (event) {
+    console.log(event.target);
+  }
+
+  vm.removeCategory = function (event) {
+    console.log(event.target);
+  }
+
+  vm.openCategoryModal = function () {
+     var categoryModalInstance = $modal.open({
+       animation: true,
       templateUrl: 'category/categoryModal.html',
-      controller: 'CategoryModalCtrl',
-      size: 'sm',
-      resolve: {
-        categories: function () {
-          return $scope.categories;
-        }
-      }
-    });
-
-    categoryModalInstance.result.then(function (selectedItem) {
-      $scope.categories.push(selectedItem);
-    }, function () {
-        console.log('Modal dismissed at: ' + new Date());
-      });
+       controller: 'CategoryModalCtrl as categoryModalCtrl',
+       size: 'sm'
+     });
+ 
+     categoryModalInstance.result.then(function (selectedItem) {
+       vm.categories.push(selectedItem);
+     }, function () {
+         console.log('Modal dismissed at: ' + new Date());
+       });
   };
-
-
 }
-
 controllersModule.controller('CategoryCtrl', CategoryCtrl);

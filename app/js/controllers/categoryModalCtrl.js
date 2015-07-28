@@ -5,19 +5,21 @@ var controllersModule = require('./_index');
 /**
  * @ngInject
  */
-function CategoryModalCtrl($scope, $modalInstance, $sce, categories) {
+function CategoryModalCtrl($modalInstance, CategoryService) {
+  var vm = this;
+  vm.category = {};
+  vm.categoryGroups = CategoryService.findCategoryGroups();
+  vm.categoryTypes = CategoryService.findCategoryTypes();
 
-  $scope.categories = categories;
-  $scope.category = {};
-  
-  $scope.saveCategory = function () {
-    $modalInstance.close($scope.category);
+  vm.saveCategory = function () {
+    if (!vm.categoryForm.$invalid) {
+      $modalInstance.close(vm.category);
+    }
   };
 
-  $scope.cancel = function () {
+  vm.cancel = function () {
     $modalInstance.dismiss('cancel');
   };
-
 }
 
 controllersModule.controller('CategoryModalCtrl', CategoryModalCtrl);
