@@ -15,11 +15,11 @@ function CategoryCtrl($modal, CategoryService) {
 
   vm.editCategory = function (event) {
     console.log(event.target);
-  }
+  };
 
   vm.removeCategory = function (event) {
     console.log(event.target);
-  }
+  };
 
   vm.openCategoryModal = function () {
      var categoryModalInstance = $modal.open({
