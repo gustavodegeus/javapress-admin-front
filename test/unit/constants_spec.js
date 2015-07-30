@@ -21,7 +21,11 @@ describe('Unit: Constants', function() {
   });
 
   it('should have an application name', function() {
-    expect(constants.appTitle).toEqual('Example Application');
+    expect(constants.appTitle).toEqual('JavaPress - Admin');
+  });
+
+  it('should have an api url', function() {
+    expect(constants.apiUrl).toEqual('javapress-backend.herokuapp.com');
   });
 
 });
