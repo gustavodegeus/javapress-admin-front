@@ -1,33 +1,37 @@
-<div class="modal-header">
-	<h3 class="modal-title">Nova categoria</h3>
+<div id="category-modal">
+	<div class="modal-header">
+		<h3 class="modal-title">{{categoryModalCtrl.title}}</h3>
+	</div>
+	<form id="category-form" name="categoryModalCtrl.categoryForm">
+		<div class="modal-body category-modal">
+			<div class="row">
+				<div class="col-md-2" ng-class="{ 'has-error': categoryForm.type.$invalid && categoryForm.type.$dirty }">Grupo:</div>
+				<div class="col-md-10">
+					<select id="category-group-select" class="form-control" ng-model="categoryModalCtrl.category.group" ng-options="categoryGroup for categoryGroup in categoryModalCtrl.categoryGroups"
+					ng-required="true">
+						<option value="">Selecione um grupo</option>
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-2">Tipo:</div>
+				<div class="col-md-10">
+					<select id="category-type-select" name="type" class="form-control" ng-model="categoryModalCtrl.category.type" ng-options="categoryType for categoryType in categoryModalCtrl.categoryTypes">
+						<option value="">Selecione o tipo</option>
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-2">Nome:</div>
+				<div class="col-md-10" ng-class="{ 'has-error': categoryForm.name.$invalid && categoryForm.name.$dirty }">
+					<input id="category-name-input" type="text" name="name" ng-model="categoryModalCtrl.category.name" class="form-control"
+					ng-required="true">
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-warning" ng-click="categoryModalCtrl.cancel()">Cancelar</button>
+			<button id="save-category-btn" class="btn btn-primary" ng-click="categoryModalCtrl.saveCategory()" ng-disabled="categoryForm.$invalid">Salvar</button>
+		</div>
+	</form>
 </div>
-<form name="categoryModalCtrl.categoryForm">
-	<div class="modal-body category-modal">
-		<div class="row">
-			<div class="col-md-2" ng-class="{ 'has-error': categoryForm.type.$invalid && categoryForm.type.$dirty }">Grupo:</div>
-			<div class="col-md-10">
-				<select class="form-control" ng-model="categoryModalCtrl.category.group" ng-options="categoryGroup for categoryGroup in categoryModalCtrl.categoryGroups"  ng-required="true">
-					<option value="">Selecione um grupo</option>
-				</select>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-2">Tipo:</div>
-			<div class="col-md-10">
-				<select name="type" class="form-control" ng-model="categoryModalCtrl.category.type" ng-options="categoryType for categoryType in categoryModalCtrl.categoryTypes">
-					<option value="">Selecione o tipo</option>
-				</select>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-2">Nome:</div>
-			<div class="col-md-10" ng-class="{ 'has-error': categoryForm.name.$invalid && categoryForm.name.$dirty }">
-				<input type="text" name="name" ng-model="categoryModalCtrl.category.name" class="form-control" ng-required="true">
-			</div>
-		</div>
-	</div>
-	<div class="modal-footer">
-		<button class="btn btn-warning" ng-click="categoryModalCtrl.cancel()">Cancelar</button>
-		<button class="btn btn-primary" ng-click="categoryModalCtrl.saveCategory()" ng-disabled="categoryForm.$invalid">Salvar</button>
-	</div>
-</form>

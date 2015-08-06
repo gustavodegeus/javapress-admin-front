@@ -16,13 +16,13 @@
 	<div class="row">
 		<div class="col-lg-1">Grupo:</div>
 		<div class="col-lg-5">
-			<select class="form-control" ng-model="category.group" ng-options="categoryGroup for categoryGroup in categoryCtrl.categoryGroups">
+			<select id="category-group-select" class="form-control" ng-model="category.group" ng-options="categoryGroup for categoryGroup in categoryCtrl.categoryGroups">
 				<option value="">Selecione um grupo</option>
 			</select>
 		</div>
 		<div class="col-lg-1">Tipo:</div>
 		<div class="col-lg-5">
-			<select name="type" class="form-control" ng-model="categoryCtrl.category.type" ng-options="categoryType for categoryType in categoryCtrl.categoryTypes"
+			<select id="category-type-select" name="type" class="form-control" ng-model="categoryCtrl.category.type" ng-options="categoryType for categoryType in categoryCtrl.categoryTypes"
 			ng-required="true">
 				<option value="">Selecione o tipo</option>
 			</select>
@@ -31,7 +31,7 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="input-group">
-				<input type="text" ng-model="category.name" class="form-control" placeholder="Categoria">
+				<input id="category-name-input" type="text" ng-model="category.name" class="form-control" placeholder="Categoria">
 				<span class="input-group-btn">
 					<a class="btn btn-primary" href="" title="Buscar Categoria">Buscar</a>
 				</span>
@@ -57,8 +57,8 @@
 						<td>{{category.group}}</td>
 						<td>
 							<div class="btn-group">
-								<a class="btn btn-success" href="#" ng-click="categoryCtrl.editCategory($event)"><i class="icon_check_alt2"></i></a>
-								<a class="btn btn-danger" href="#" ng-click="categoryCtrl.removeCategory($event)"><i class="icon_close_alt2"></i></a>
+								<a class="btn btn-success" href="#" ng-click="categoryCtrl.editCategory(category)"><i class="icon_check_alt2"></i></a>
+								<a class="btn btn-danger" href="#" ng-click="categoryCtrl.removeCategory(category)"><i class="icon_close_alt2"></i></a>
 							</div>
 						</td>
 					</tr>
@@ -67,6 +67,6 @@
 		</section>
 	</div>
 	<div class="col-lg-1">
-		<a class="btn btn-primary" href="" title="Cadastrar nova categoria" ng-click="categoryCtrl.openCategoryModal()">Inserir</a>
+		<a id="add-category-btn" class="btn btn-primary" href="" title="Cadastrar nova categoria" ng-click="categoryCtrl.addCategory()">Inserir</a>
 	</div>
 </div>

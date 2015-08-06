@@ -5,9 +5,10 @@ var controllersModule = require('./_index');
 /**
  * @ngInject
  */
-function CategoryModalCtrl($modalInstance, CategoryService) {
+function CategoryModalCtrl($modalInstance, CategoryService, category, title) {
   var vm = this;
-  vm.category = {};
+  vm.title = title;
+  vm.category = category;
   vm.categoryGroups = CategoryService.findCategoryGroups();
   vm.categoryTypes = CategoryService.findCategoryTypes();
 

@@ -25,7 +25,7 @@ describe('Unit: Constants', function() {
   });
 
   it('should have an api url', function() {
-    expect(constants.apiUrl).toEqual('javapress-backend.herokuapp.com');
+    expect(constants.apiUrl).toEqual('javapress-backend.herokuapp.com');    
   });
 
 });
