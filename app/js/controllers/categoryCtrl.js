@@ -5,48 +5,85 @@ var controllersModule = require('./_index');
 /**
  * @ngInject
  */
-function CategoryCtrl($modal, CategoryService) {
+function CategoryCtrl($modal, $log, CategoryService) {
   // ViewModel
   var vm = this;
   vm.category = {};
-  vm.categoryGroups = CategoryService.findCategoryGroups();
-  vm.categoryTypes = CategoryService.findCategoryTypes();
-  vm.categories = CategoryService.findCategories();
+  vm.categoryGroups = CategoryService.Group.query();
+  vm.categoryTypes = CategoryService.findTypes();
+  vm.categories = [];
+  //Pagination fields
+  vm.filteredCategories = [];
+  vm.totalItems = vm.categories.length;
+  vm.currentPage = 1;
+  vm.numPerPage = 10;
+  vm.maxSize = 5;
+
+  vm.loadCategories = function (categories) {
+    if (categories) {
+      vm.categories = categories;
+    } else {
+      vm.categories = CategoryService.Category.findAll();
+    }
+    vm.filteredCategories = vm.categories;
+  };
+
+  vm.pageChanged = function () {
+    var begin = ((vm.currentPage - 1) * vm.numPerPage);
+    var end = begin + vm.numPerPage;
+    vm.filteredCategories = vm.categories.slice(begin, end);
+  };
+
+  vm.findCategories = function () {
+    var requestParams = CategoryService.buildRequestParams(vm.category);
+    vm.loadCategories(CategoryService.Category.findAll(requestParams));
+  };
 
   vm.editCategory = function (category) {
     vm.openCategoryModal(category, 'Editar Categoria');
   };
 
   vm.removeCategory = function (category) {
-    // CategoryService.removeCategory(category.id);    
-    vm.categories.splice(vm.categories.indexOf(category), 1);
+    CategoryService.Category.delete({ id: category.id }).$promise.then(function () {
+      vm.loadCategories();
+    });
   };
-  
+
   vm.addCategory = function () {
     vm.openCategoryModal({}, 'Nova Categoria');
   };
 
   vm.openCategoryModal = function (category, title) {
-     var categoryModalInstance = $modal.open({
-       animation: true,
+    var categoryModalInstance = $modal.open({
+      animation: true,
       templateUrl: 'category/categoryModal.html',
-       controller: 'CategoryModalCtrl as categoryModalCtrl',
-       size: 'sm',
-       resolve: {
+      controller: 'CategoryModalCtrl as categoryModalCtrl',
+      size: 'sm',
+      resolve: {
         category: function () {
           return category;
         },
-        title: function() {
+        title: function () {
           return title;
         }
-       }       
-     });
- 
-     categoryModalInstance.result.then(function (selectedItem) {
-       vm.categories.push(selectedItem);
-     }, function () {
-         console.log('Modal dismissed at: ' + new Date());
-       }  );
+      }
+    });
+
+    categoryModalInstance.result.then(function (selectedItem) {
+      if (selectedItem.id) {
+        CategoryService.Category.update({}, selectedItem).$promise.then(function () {
+          vm.loadCategories();
+        });
+        return;
+      }
+      CategoryService.Category.create({}, selectedItem).$promise.then(function () {
+        vm.loadCategories();
+      });
+    }, function () {
+      console.log('Modal dismissed at: ' + new Date());
+    });
   };
+
+  vm.loadCategories();
 }
 controllersModule.controller('CategoryCtrl', CategoryCtrl);

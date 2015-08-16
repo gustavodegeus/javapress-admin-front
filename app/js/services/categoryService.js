@@ -5,40 +5,40 @@ var servicesModule = require('./_index.js');
 /**
  * @ngInject
  */
-function CategoryService(AppSettings) {
-  
+function CategoryService(AppSettings, $resource) {
+
   var CategoryService = {};
-  CategoryService.someValue = '';
-  CategoryService.findCategoryGroups = function(){
-    return ["Post", "Receita"];  
-  };
+
+  CategoryService.Category = 
+     $resource(AppSettings.apiUrl + 'category/:id/:name/:type/:parentName', null,
+      {
+        'create': { method: 'POST' },
+        'findAll': { method: 'GET', 
+                     isArray: true,
+                     url: AppSettings.apiUrl + '/categories'    
+                   },
+        'get': { method: 'GET', isArray: false },
+        'update': { method: 'PUT' },
+        'delete': { method: 'DELETE' }  
+      });
   
-  CategoryService.findCategoryTypes = function(){
-    return ["Aves", "Lugares", "Massas", "Utilidades"];  
-  };
+  CategoryService.Group = $resource(AppSettings.apiUrl + 'categories');
   
-  CategoryService.findCategories = function () {
-    return [{
-    id: 1,
-    type: 'Lugares',
-    group: 'Post',
-    name: 'Lugares'
-  },
-    {
-      id: 2,
-      type: 'Utilidades',
-      group: 'Post',
-      name: 'Batedeira'
-    },
-    {
-      id: 3,
-      type: 'Ave',
-      group: 'Receita',
-      name: 'Frango'
-    }];
+  CategoryService.findTypes = function () {
+    return ["POST", "RECIPE"];
   };
+
+  CategoryService.buildRequestParams = function (category) {
+    var requestParams = {};
+    if (category.type) requestParams.type = category.type;
+    if (category.name) requestParams.name = category.name;
+    if (category.parent) requestParams.parentName = category.parent.name;
+
+    return requestParams;
+  };
+
   return CategoryService;
-  
+
 }
 
 servicesModule.factory('CategoryService', CategoryService);

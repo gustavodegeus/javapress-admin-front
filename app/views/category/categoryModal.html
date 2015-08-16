@@ -5,15 +5,6 @@
 	<form id="category-form" name="categoryModalCtrl.categoryForm">
 		<div class="modal-body category-modal">
 			<div class="row">
-				<div class="col-md-2" ng-class="{ 'has-error': categoryForm.type.$invalid && categoryForm.type.$dirty }">Grupo:</div>
-				<div class="col-md-10">
-					<select id="category-group-select" class="form-control" ng-model="categoryModalCtrl.category.group" ng-options="categoryGroup for categoryGroup in categoryModalCtrl.categoryGroups"
-					ng-required="true">
-						<option value="">Selecione um grupo</option>
-					</select>
-				</div>
-			</div>
-			<div class="row">
 				<div class="col-md-2">Tipo:</div>
 				<div class="col-md-10">
 					<select id="category-type-select" name="type" class="form-control" ng-model="categoryModalCtrl.category.type" ng-options="categoryType for categoryType in categoryModalCtrl.categoryTypes">
@@ -21,6 +12,15 @@
 					</select>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-md-2" ng-class="{ 'has-error': categoryForm.type.$invalid && categoryForm.type.$dirty }">Grupo:</div>
+				<div class="col-md-10">
+					<select id="category-group-select" class="form-control" ng-model="categoryModalCtrl.category.parent" ng-options="categoryGroup.name for categoryGroup in categoryModalCtrl.categoryGroups"
+					>
+						<option value="">Selecione um grupo</option>
+					</select>
+				</div>
+			</div>			
 			<div class="row">
 				<div class="col-md-2">Nome:</div>
 				<div class="col-md-10" ng-class="{ 'has-error': categoryForm.name.$invalid && categoryForm.name.$dirty }">

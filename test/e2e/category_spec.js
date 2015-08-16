@@ -30,10 +30,10 @@ describe('E2E: Category', function () {
 
   it('should add a new line in category grid', function () {
     element(by.id('add-category-btn')).click().then(function () {
-      element(by.model('categoryModalCtrl.category.group')).$('option[label="Receita"]').click();
+      element(by.model('categoryModalCtrl.category.type')).$('option[label="RECIPE"]').click();
       element(by.id('category-modal')).$('#category-name-input').sendKeys('Recipe Test');
       element(by.id('save-category-btn')).click().then(function () {
-        element.all(by.repeater('category in categoryCtrl.categories')).then(function (categories) {
+        element.all(by.repeater('category in categoryCtrl.filteredCategories')).then(function (categories) {
           expect(categories.length > 0).toBeTruthy();
         });
       });
