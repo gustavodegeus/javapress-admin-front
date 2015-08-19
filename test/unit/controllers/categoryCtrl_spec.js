@@ -27,10 +27,8 @@ describe('Unit: CategoryCtrl', function () {
       delete: function () {
         queryDeferred = $q.defer();
         return { $promise: queryDeferred.promise };
-      }
-    };
-    CategoryServiceMock.Group = {
-      query: function () {
+      },
+      findParents: function () {
         queryDeferred = $q.defer();
         return { $promise: queryDeferred.promise };
       }
@@ -39,11 +37,16 @@ describe('Unit: CategoryCtrl', function () {
     CategoryServiceMock.findTypes = function () {
       return ["POST", "RECIPE"];
     };
-
+    
+    CategoryServiceMock.loadGroups = function () {
+      return [{id: 1, nome:'Test Parent'}];
+    };
+    
     spyOn(CategoryServiceMock.Category, 'findAll').andCallThrough();
     spyOn(CategoryServiceMock.Category, 'delete').andCallThrough();
-    spyOn(CategoryServiceMock.Group, 'query').andCallThrough();
+    spyOn(CategoryServiceMock.Category, 'findParents').andCallThrough();
     spyOn(CategoryServiceMock, 'findTypes').andCallThrough();
+    spyOn(CategoryServiceMock, 'loadGroups').andCallThrough();
 
     ctrl = $controller('CategoryCtrl', {
       'CategoryService': CategoryServiceMock
@@ -60,7 +63,7 @@ describe('Unit: CategoryCtrl', function () {
   });
 
   it('should have category groups populated', function () {
-    expect(CategoryServiceMock.Group.query).toHaveBeenCalled();
+    expect(CategoryServiceMock.loadGroups).toHaveBeenCalled();
   });
 
   it('should have category types populated', function () {

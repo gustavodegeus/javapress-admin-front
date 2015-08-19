@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">    
+<html lang="en" class="no-js">
+    
     <head>
         <!-- build:basetag -->
         <base href="/">
@@ -23,6 +24,7 @@
         <link href="css/style.css" rel="stylesheet">
         <link href="css/select.css" rel="stylesheet">
         <link href="css/style-responsive.css" rel="stylesheet" />
+        <link href="css/ng-tags-input.min.css" rel="stylesheet">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
         <!--[if lt IE 9]>
             <script src="js/html5shiv.js"></script>
@@ -297,18 +299,18 @@
                 <div id="sidebar" class="nav-collapse ">
                     <!-- sidebar menu start-->
                     <ul class="sidebar-menu">
-                        <accordion close-others="true">
-                            <accordion-group is-open="status.open">
-                                <accordion-heading>
-                                    <i class="icon_document_alt"></i>
-                                    <span>Cadastro</span>
-                                    <span class="menu-arrow arrow_carrot-right"></span>
-                                </accordion-heading>
-                                <li>
-                                    <a href ui-sref="category">Categoria</a>
-                                </li>
-                            </accordion-group>
-                        </accordion>
+                        <li>
+                            <a class="" ui-sref="category">
+                          <i class="icon_ribbon_alt"></i>
+                          <span>Categoria</span>
+                      </a>
+                        </li>
+                        <li>
+                            <a class="" ui-sref="post">
+                          <i class="icon_document_alt"></i>
+                          <span>Posts</span>
+                      </a>
+                        </li>
                     </ul>
                     <!-- sidebar menu end-->
                 </div>

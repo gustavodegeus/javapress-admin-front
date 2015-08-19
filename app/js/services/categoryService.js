@@ -15,14 +15,17 @@ function CategoryService(AppSettings, $resource) {
         'create': { method: 'POST' },
         'findAll': { method: 'GET', 
                      isArray: true,
-                     url: AppSettings.apiUrl + '/categories'    
+                     url: AppSettings.apiUrl + 'categories'    
                    },
+         'findParents': { method: 'GET', 
+           isArray: true,
+           url: AppSettings.apiUrl + 'parentCategories'    
+         },
         'get': { method: 'GET', isArray: false },
         'update': { method: 'PUT' },
         'delete': { method: 'DELETE' }  
       });
   
-  CategoryService.Group = $resource(AppSettings.apiUrl + 'categories');
   
   CategoryService.findTypes = function () {
     return ["POST", "RECIPE"];
@@ -35,6 +38,13 @@ function CategoryService(AppSettings, $resource) {
     if (category.parent) requestParams.parentName = category.parent.name;
 
     return requestParams;
+  };
+  
+  CategoryService.loadGroups = function (categoryType) {
+    if (categoryType) {
+      return CategoryService.Category.findParents({ type: categoryType });
+    }
+    return CategoryService.Category.findParents();
   };
 
   return CategoryService;

@@ -2,7 +2,7 @@
 
 var AppSettings = {
   appTitle: 'JavaPress - Admin',
-  apiUrl: ' http://javapress-backend.herokuapp.com/'
+  apiUrl: ' http://localhost:8080/javapress/'
 };
 
 module.exports = AppSettings;

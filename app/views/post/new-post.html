@@ -1,0 +1,47 @@
+<div class="row">
+	<div class="col-lg-12">
+		<h3 class="page-header">
+			<i class="fa fa-file-text-o"></i>Novo Post</h3>
+		<ol class="breadcrumb">
+			<li>
+				<i class="fa fa-home"></i>
+				<a href="index.html">Home</a>
+			</li>
+			<li>
+				<i class="icon_document_alt"></i>Cadastro</li>
+			<li>
+				<i class="fa fa-file-text-o"></i>Post</li>
+		</ol>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-9">
+		<input id="post-title-input" type="text" ng-model="categoryCtrl.category.name" class="form-control" placeholder="Adicione o titulo aqui"></input>
+		<div>
+			<text-angular></text-angular>
+		</div>
+	</div>
+	<div class="col-lg-3">
+		<accordion close-others="true">
+			<accordion-group heading="Categoria" is-open="true" is-disabled="false">
+				<select id="category-type-select" name="type" class="form-control" ng-model="postCtrl.category"
+					ng-options="category.name for category in postCtrl.categories">
+					<option value="">Selecione a categoria</option>
+				</select>	
+			</accordion-group>
+			<accordion-group heading="Tags" >
+				<tags-input ng-model="postCtrl.tags"></tags-input>				
+			</accordion-group>
+			<accordion-group heading="Opções">This content is straight in the template.</accordion-group>
+		</accordion>
+	</div>
+</div>
+<div class="row">
+<div class="col-lg-8">
+<button id="save-category-btn" class="btn btn-primary" ng-click="categoryModalCtrl.saveCategory()" ng-disabled="categoryForm.$invalid">Publicar</button>
+<button id="save-category-btn" class="btn btn-primary" ng-click="categoryModalCtrl.saveCategory()" ng-disabled="categoryForm.$invalid">Salvar como rascunho</button>
+</div>
+<div class="col-lg-1">
+<button id="save-category-btn" class="btn btn-primary" ng-click="categoryModalCtrl.saveCategory()" ng-disabled="categoryForm.$invalid">Preview</button>
+</div>
+</div>

@@ -7,6 +7,13 @@ require('angular-ui-router');
 require('angular-bootstrap');
 require('ng-ui-select');
 require('angular-resource');
+//Workarround to TextAngular works
+window.rangy = require('rangy');
+window.rangy.saveSelection = require('rangy/lib/rangy-selectionsaverestore');
+require('textangular');
+require('textangular/dist/textAngular-rangy.min');
+require('textangular/dist/textAngular-sanitize.min');
+require('ng-tags-input');
 require('./templates');
 require('./controllers/_index');
 require('./services/_index');
@@ -20,6 +27,8 @@ angular.element(document).ready(function() {
     'ui.bootstrap',
     'ui.select',
     'ngResource',
+    'textAngular',
+    'ngTagsInput',
     'templates',
     'app.controllers',
     'app.services',

@@ -4943,10 +4943,22 @@ span.customSelect.changed {
     margin-bottom: 10px;
 }
 
-.category-filter .row{
+.filter .row{
     margin-bottom: 10px;
 }
 
 .modal-sm {
     width: 400px;
+}
+
+.ta-toolbar {
+ margin-top: 15px;   
+}
+.ta-editor {
+    min-height: 300px;
+    height: auto;
+    overflow: auto;
+    font-family: inherit;
+    font-size: 100%;
+    margin-bottom: 15px;
 }

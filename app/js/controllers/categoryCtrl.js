@@ -9,7 +9,7 @@ function CategoryCtrl($modal, $log, CategoryService) {
   // ViewModel
   var vm = this;
   vm.category = {};
-  vm.categoryGroups = CategoryService.Group.query();
+  vm.categoryGroups = [];
   vm.categoryTypes = CategoryService.findTypes();
   vm.categories = [];
   //Pagination fields
@@ -18,6 +18,10 @@ function CategoryCtrl($modal, $log, CategoryService) {
   vm.currentPage = 1;
   vm.numPerPage = 10;
   vm.maxSize = 5;
+
+  vm.loadGroups = function() {
+    vm.categoryGroups = CategoryService.loadGroups(vm.category.type);
+  };
 
   vm.loadCategories = function (categories) {
     if (categories) {
@@ -56,7 +60,7 @@ function CategoryCtrl($modal, $log, CategoryService) {
   vm.openCategoryModal = function (category, title) {
     var categoryModalInstance = $modal.open({
       animation: true,
-      templateUrl: 'category/categoryModal.html',
+      templateUrl: 'category/category-modal.html',
       controller: 'CategoryModalCtrl as categoryModalCtrl',
       size: 'sm',
       resolve: {
@@ -85,5 +89,6 @@ function CategoryCtrl($modal, $log, CategoryService) {
   };
 
   vm.loadCategories();
+  vm.loadGroups();
 }
 controllersModule.controller('CategoryCtrl', CategoryCtrl);

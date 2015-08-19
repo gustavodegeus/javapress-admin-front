@@ -7,7 +7,7 @@
 			<div class="row">
 				<div class="col-md-2">Tipo:</div>
 				<div class="col-md-10">
-					<select id="category-type-select" name="type" class="form-control" ng-model="categoryModalCtrl.category.type" ng-options="categoryType for categoryType in categoryModalCtrl.categoryTypes">
+					<select id="category-type-select" name="type" class="form-control" ng-change="categoryModalCtrl.loadGroups()" ng-model="categoryModalCtrl.category.type" ng-options="categoryType for categoryType in categoryModalCtrl.categoryTypes">
 						<option value="">Selecione o tipo</option>
 					</select>
 				</div>
