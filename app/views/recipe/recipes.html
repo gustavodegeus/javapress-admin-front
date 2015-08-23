@@ -1,8 +1,8 @@
 <div class="row">
 	<div class="col-lg-12">		
 		<h3 class="page-header">
-			<i class="fa fa-file-text-o"></i>Posts
-			<a id="add-category-btn" class="btn btn-primary" ui-sref="new-post" title="Cadastrar novo post">Novo</a>
+			<i class="fa fa-file-text-o"></i>Receitas
+			<a id="add-category-btn" class="btn btn-default" ui-sref="new-recipe" title="Cadastrar nova receita">Nova</a>
 			</h3>
 		<ol class="breadcrumb">
 			<li>
@@ -12,7 +12,7 @@
 			<li>
 				<i class="fa fa-bars"></i>Cadastro</li>
 			<li>
-				<i class="fa fa-square-o"></i>Posts</li>
+				<i class="fa fa-square-o"></i>Receita</li>
 		</ol>
 	</div>
 </div>
@@ -41,9 +41,21 @@
 						<th>Titulo</th>
 						<th>Categoria</th>
 						<th>Tags</th>
-						<th>Data</th>
+						<th>Data Criação</th>
 						<th>
 							<i class="icon_cogs"></i>Ações</th>
+					</tr>
+					<tr id="{{post.id}}" ng-repeat="post in postCtrl.posts">
+						<td>{{post.title}}</td>
+						<td>{{post.category.name}}</td>
+						<td><span ng-repeat="tag in post.tags">{{tag.name + ', '}} </span></td>
+						<td>{{post.created}}</td>
+						<td>
+							<div class="btn-group">
+								<a class="btn btn-success" ui-sref="new-post({post : post})"><i class="icon_check_alt2"></i></a>
+								<a class="btn btn-danger" href="#" ng-click="postCtrl.remove(post)"><i class="icon_close_alt2"></i></a>
+							</div>
+						</td>
 					</tr>
 				</tbody>
 			</table>

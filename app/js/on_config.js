@@ -23,14 +23,34 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider, $provid
     .state('post', {
       url: '/post',
       controller: 'PostCtrl as postCtrl',
-      templateUrl: 'post/post.html',
+      templateUrl: 'post/posts.html',
       title: 'Cadastro de posts'
     })
     .state('new-post', {
       url: '/new-post',
       controller: 'PostCtrl as postCtrl',
       templateUrl: 'post/new-post.html',
-      title: 'Novo de post'
+      title: 'Novo de post',
+      params: {post : null}
+    })
+     .state('recipe', {
+      url: '/recipe',
+      controller: 'RecipeCtrl as recipeCtrl',
+      templateUrl: 'recipe/recipes.html',
+      title: 'Cadastro de receitas'
+    })
+    .state('new-recipe', {
+      url: '/new-recipe',
+      controller: 'RecipeCtrl as recipeCtrl',
+      templateUrl: 'recipe/new-recipe.html',
+      title: 'Nova receita',
+      params: {recipe : null}
+    })
+    .state('comments', {
+      url: '/comments',
+      controller: 'CommentsCtrl as commentsCtrl',
+      templateUrl: 'comments/comments.html',
+      title: 'Gerenciar comentários'
     });
 
   $urlRouterProvider.otherwise('/');
