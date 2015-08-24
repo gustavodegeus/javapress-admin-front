@@ -27,6 +27,3 @@ typings
 # Build files
 build
 templates.js
-
-#webstorm
-.idea
