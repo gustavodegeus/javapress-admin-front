@@ -14,6 +14,7 @@ require('textangular');
 require('textangular/dist/textAngular-rangy.min');
 require('textangular/dist/textAngular-sanitize.min');
 require('ng-tags-input');
+require('angular-drag-and-drop-lists');
 require('./templates');
 require('./controllers/_index');
 require('./services/_index');
@@ -29,6 +30,7 @@ angular.element(document).ready(function() {
     'ngResource',
     'textAngular',
     'ngTagsInput',
+    'dndLists',
     'templates',
     'app.controllers',
     'app.services',

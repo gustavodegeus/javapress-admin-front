@@ -4961,3 +4961,19 @@ span.customSelect.changed {
     font-size: 100%;
     margin-bottom: 15px;
 }
+
+.draggable-list {
+    margin-top: 15px;
+}
+
+.draggable-item {
+    cursor: move;
+}
+
+.draggable-item span {
+    cursor: pointer;
+}
+
+.footer-btn-group {
+    margin-top: 15px;
+}

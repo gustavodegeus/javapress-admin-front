@@ -20,13 +20,13 @@
 	<div class="row">
 		<div class="col-lg-1">Data:</div>
 		<div class="col-lg-5">
-			<select id="post-date-select" name="post-date" class="form-control">
+			<select id="recipe-date-select" name="recipe-date" class="form-control">
 				<option value="">Todas as datas</option>
 			</select>
 		</div>
 		<div class="col-lg-1">Categoria:</div>
 		<div class="col-lg-5">
-			<select id="post-category-select" class="form-control">
+			<select id="recipe-category-select" class="form-control">
 				<option value="">Todas as categorias</option>
 			</select>
 		</div>
@@ -45,15 +45,15 @@
 						<th>
 							<i class="icon_cogs"></i>Ações</th>
 					</tr>
-					<tr id="{{post.id}}" ng-repeat="post in postCtrl.posts">
-						<td>{{post.title}}</td>
-						<td>{{post.category.name}}</td>
-						<td><span ng-repeat="tag in post.tags">{{tag.name + ', '}} </span></td>
-						<td>{{post.created}}</td>
+					<tr id="{{recipe.id}}" ng-repeat="recipe in recipeCtrl.recipes">
+						<td>{{recipe.title}}</td>
+						<td>{{recipe.category.name}}</td>
+						<td><span ng-repeat="tag in recipe.tags">{{tag.name + ', '}} </span></td>
+						<td>{{recipe.created}}</td>
 						<td>
 							<div class="btn-group">
-								<a class="btn btn-success" ui-sref="new-post({post : post})"><i class="icon_check_alt2"></i></a>
-								<a class="btn btn-danger" href="#" ng-click="postCtrl.remove(post)"><i class="icon_close_alt2"></i></a>
+								<a class="btn btn-success" ui-sref="new-recipe({recipe : recipe})"><i class="icon_check_alt2"></i></a>
+								<a class="btn btn-danger" href="#" ng-click="recipeCtrl.remove(recipe)"><i class="icon_close_alt2"></i></a>
 							</div>
 						</td>
 					</tr>

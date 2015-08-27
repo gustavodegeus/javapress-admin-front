@@ -9,25 +9,25 @@ function RecipeService(AppSettings, $resource) {
 
   var RecipeService = {};
 
-  RecipeService.Post = 
+  RecipeService.Recipe = 
      $resource(AppSettings.apiUrl + 'recipe/:id/:title/:categoryId', null,
       {
         'create': { method: 'POST' },
         'findAll': { method: 'GET', 
                      isArray: true,
-                     url: AppSettings.apiUrl + 'blogPosts'    
+                     url: AppSettings.apiUrl + 'recipes'    
                    },
         'get': { method: 'GET', isArray: false },
         'update': { method: 'PUT' },
         'delete': { method: 'DELETE' }  
       });
   
-  RecipeService.saveOrUpdate = function (post) {
-    if(post.id)
+  RecipeService.saveOrUpdate = function (recipe) {
+    if(recipe.id)
     {
-      return RecipeService.Post.update({}, post);        
+      return RecipeService.Recipe.update({}, recipe);        
     }
-    return RecipeService.Post.create({}, post);
+    return RecipeService.Recipe.create({}, recipe);
   }
   return RecipeService;
 
