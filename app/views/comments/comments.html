@@ -28,15 +28,17 @@
 						<th>
 							<i class="icon_cogs"></i>Ações</th>
 					</tr>
-					<tr id="{{post.id}}" ng-repeat="post in postCtrl.posts">
-						<td>{{post.title}}</td>
-						<td>{{post.category.name}}</td>
-						<td><span ng-repeat="tag in post.tags">{{tag.name + ', '}} </span></td>
-						<td>{{post.created}}</td>
+					<tr id="{{comment.id}}" ng-repeat="comment in commentCtrl.comments">
+						<td>{{comment.senderName}}</td>
+						<td>{{comment.content}}</td>
+						<td>{{comment.post.title}}</td>
+						<td>{{comment.created}}</td>
 						<td>
 							<div class="btn-group">
-								<a class="btn btn-success" ui-sref="new-post({post : post})"><i class="icon_check_alt2"></i></a>
-								<a class="btn btn-danger" href="#" ng-click="postCtrl.remove(post)"><i class="icon_close_alt2"></i></a>
+								<a ng-class="comment.published ? 'btn btn-danger' : 'btn btn-success' " ng-click="commentCtrl.changePublishStatus(comment)"><i ng-class="comment.published ? 'icon_dislike' : 'icon_like' "></i></a> 
+								<a class="btn btn-info" href="#" ng-click="commentCtrl.reply(comment)"><i class=" icon_comment_alt"></i></a>
+								<a class="btn btn-warning" href="#" ng-click="commentCtrl.showDetails(comment)"><i class="icon_documents_alt"></i></a>
+								<a class="btn btn-danger" href="#" ng-click="commentCtrl.remove(comment)"><i class="icon_close_alt2"></i></a>
 							</div>
 						</td>
 					</tr>

@@ -1,0 +1,17 @@
+<div id="category-modal">
+	<div class="modal-header">
+		<h3 class="modal-title">Responder comentário</h3>
+	</div>
+	<form id="category-form" name="commentCtrl.replyCommentForm">
+		<div class="row">
+			<div class="col-lg-12">
+				<textarea class="form-control" rows="3">{{commentCtrl.commentToReply.content}}</textarea>
+				<text-angular ng-model="commentCtrl.replyContent"></text-angular>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-warning" ng-click="commentCtrl.cancelModal()">Cancelar</button>
+			<button id="save-category-btn" class="btn btn-primary" ng-click="commentCtrl.saveReply()">Responder</button>
+		</div>
+	</form>
+</div>

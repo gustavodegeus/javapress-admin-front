@@ -48,7 +48,7 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider, $provid
     })
     .state('comments', {
       url: '/comments',
-      controller: 'CommentsCtrl as commentsCtrl',
+      controller: 'CommentCtrl as commentCtrl',
       templateUrl: 'comments/comments.html',
       title: 'Gerenciar comentários'
     });
