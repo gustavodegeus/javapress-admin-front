@@ -10,7 +10,7 @@ function CommentService(AppSettings, $resource) {
   var CommentService = {};
 
   CommentService.Comment = 
-     $resource(AppSettings.apiUrl + 'comment/:id', null,
+     $resource(AppSettings.apiUrl + 'comment/:id/:operation', null,
       {
         'create': { method: 'POST' },
         'findAll': { method: 'GET', 
@@ -19,6 +19,7 @@ function CommentService(AppSettings, $resource) {
                    },
         'get': { method: 'GET', isArray: false },
         'update': { method: 'PUT' },
+        'reply' : { method: 'PUT' },
         'delete': { method: 'DELETE' }  
       });
   
@@ -29,6 +30,7 @@ function CommentService(AppSettings, $resource) {
     }
     return CommentService.Comment.create({}, comment);
   }
+  
   return CommentService;
 
 }

@@ -18,7 +18,7 @@
 	<div class="col-lg-9">
 		<accordion close-others="true">
 			<accordion-group heading="Conteúdo" is-open="true" is-disabled="false">
-				<input id="recipe-title-input" type="text" ng-model="recipeCtrl.recipe.title" class="form-control" placeholder="Adicione o titulo aqui"></input>					
+				<input id="recipe-title-input" type="text" ng-model="recipeCtrl.recipe.title" class="form-control" placeholder="Adicione o titulo aqui"></input>
 				<div>
 					<text-angular ng-model="recipeCtrl.recipe.content"></text-angular>
 				</div>
@@ -27,17 +27,16 @@
 				<div class="row">
 					<div class="col-lg-6">
 						<div class="input-group">
-							<input on-enter="recipeCtrl.addIngredient(recipeIngredient)" type="text" class="form-control" placeholder="Insira o ingrediente" ng-model="recipeIngredient">
+							<input on-enter="recipeCtrl.addIngredient(recipeIngredient)" type="text" class="form-control" placeholder="Insira o ingrediente"
+							ng-model="recipeIngredient">
 							<span class="input-group-btn">
 								<button class="btn btn-primary" type="button" ng-click="recipeCtrl.addIngredient(recipeIngredient)">Adicionar</button>
 							</span>
 						</div>
 						<div class="draggable-list">
-							<ul dnd-list="recipeCtrl.recipe.ingredients" class="list-group">								
-								<a ng-repeat="ingredient in recipeCtrl.recipe.ingredients" dnd-draggable="ingredient" 
-								   dnd-moved="recipeCtrl.recipe.ingredients.splice($index, 1)"
-								   dnd-effect-allowed="move" 
-								   class="list-group-item draggable-item">
+							<ul dnd-list="recipeCtrl.recipe.ingredients" class="list-group">
+								<a ng-repeat="ingredient in recipeCtrl.recipe.ingredients" dnd-draggable="ingredient" dnd-moved="recipeCtrl.recipe.ingredients.splice($index, 1)"
+								dnd-effect-allowed="move" class="list-group-item draggable-item">
 								   {{ingredient.description}}  
 								   <span class="badge" ng-click="recipeCtrl.removeIngredient($index)">X</span>
 								 </a>
@@ -52,10 +51,9 @@
 							</span>
 						</div>
 						<div class="draggable-list">
-							<ul dnd-list="recipeCtrl.recipe.steps" class="list-group">								
-								<a ng-repeat="step in recipeCtrl.recipe.steps" dnd-draggable="step" 
-								   dnd-moved="recipeCtrl.recipe.steps.splice($index, 1)" dnd-effect-allowed="move"
-								  class="list-group-item draggable-item">
+							<ul dnd-list="recipeCtrl.recipe.steps" class="list-group">
+								<a ng-repeat="step in recipeCtrl.recipe.steps" dnd-draggable="step" dnd-moved="recipeCtrl.recipe.steps.splice($index, 1)"
+								dnd-effect-allowed="move" class="list-group-item draggable-item">
 								  {{step.description}}
 								  <span class="badge" ng-click="recipeCtrl.removeStep($index)">X</span>
 								</a>
@@ -76,7 +74,19 @@
 			<accordion-group heading="Tags">
 				<tags-input ng-model="recipeCtrl.recipe.tags" display-property="name"></tags-input>
 			</accordion-group>
-			<accordion-group heading="Informações Adicionais">Tempo de preparo + Quantidade de porções</accordion-group>
+			<accordion-group heading="Informações Adicionais">
+				Tempo de preparo:
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Tempo de preparo" aria-describedby="basic-addon2" ng-model="recipeCtrl.recipe.cookTime">
+					<span class="input-group-addon" id="basic-addon2">minutos</span>
+				</div>
+				Porções:
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Quantidade de porções" aria-describedby="basic-addon2" ng-model="recipeCtrl.recipe.servings">
+					<span class="input-group-addon" id="basic-addon2">porções</span>
+				</div>
+				
+			</accordion-group>
 		</accordion>
 	</div>
 </div>

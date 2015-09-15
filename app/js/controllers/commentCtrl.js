@@ -8,17 +8,23 @@ var controllersModule = require('./_index');
 function CommentCtrl(CommentService, $modal) {
 	var vm = this;
 	vm.comments = CommentService.Comment.findAll();
-	vm.commentToReply = {};
-
+	vm.activePosition;
+	
 	vm.changePublishStatus = function (comment) {
 		comment.published = !comment.published
+		CommentService.Comment.update({}, comment);
 	};
 
+	vm.toggleDetail = function($index) {
+        //$scope.isVisible = $scope.isVisible == 0 ? true : false;
+        vm.activePosition = vm.activePosition == $index ? -1 : $index;
+    };
+
 	vm.reply = function (comment) {
-		var categoryModalInstance = $modal.open({
+		var replyCommentModalInstance = $modal.open({
 			animation: true,
 			templateUrl: 'comments/reply-comment-modal.html',
-			controller: 'CommentCtrl as commentCtrl',
+			controller: 'CommentModalCtrl as commentModalCtrl',
 			size: 'lg',
 			resolve: {
 				commentToReply: function () {
@@ -27,16 +33,8 @@ function CommentCtrl(CommentService, $modal) {
 			}
 		});
 
-		categoryModalInstance.result.then(function (selectedItem) {
-			if (selectedItem.id) {
-				CategoryService.Category.update({}, selectedItem).$promise.then(function () {
-					vm.loadCategories();
-				});
-				return;
-			}
-			CategoryService.Category.create({}, selectedItem).$promise.then(function () {
-				vm.loadCategories();
-			});
+		replyCommentModalInstance.result.then(function (commentResponse) {
+			
 		}, function () {
 			console.log('Modal dismissed at: ' + new Date());
 		});

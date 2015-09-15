@@ -4968,6 +4968,7 @@ span.customSelect.changed {
 
 .draggable-item {
     cursor: move;
+    word-wrap: break-word;
 }
 
 .draggable-item span {
