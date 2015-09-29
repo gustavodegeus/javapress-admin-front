@@ -12,30 +12,16 @@ function CategoryCtrl($modal, $log, CategoryService) {
   vm.categoryGroups = [];
   vm.categoryTypes = CategoryService.findTypes();
   vm.categories = [];
-  //Pagination fields
-  vm.filteredCategories = [];
-  vm.totalItems = vm.categories.length;
-  vm.currentPage = 1;
-  vm.numPerPage = 10;
-  vm.maxSize = 5;
 
-  vm.loadGroups = function() {
+  vm.loadGroups = function () {
     vm.categoryGroups = CategoryService.loadGroups(vm.category.type);
   };
 
   vm.loadCategories = function (categories) {
     if (categories) {
-      vm.categories = categories;
-    } else {
-      vm.categories = CategoryService.Category.findAll();
+      return vm.categories = categories;
     }
-    vm.filteredCategories = vm.categories;
-  };
-
-  vm.pageChanged = function () {
-    var begin = ((vm.currentPage - 1) * vm.numPerPage);
-    var end = begin + vm.numPerPage;
-    vm.filteredCategories = vm.categories.slice(begin, end);
+    vm.categories = CategoryService.Category.findAll();
   };
 
   vm.findCategories = function () {

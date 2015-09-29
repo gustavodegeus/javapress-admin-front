@@ -2,7 +2,7 @@
 	<div class="col-lg-12">		
 		<h3 class="page-header">
 			<i class="fa fa-file-text-o"></i>Receitas
-			<a id="add-category-btn" class="btn btn-default" ui-sref="new-recipe" title="Cadastrar nova receita">Nova</a>
+			<a id="add-category-btn" class="btn btn-default" ui-sref="app.new-recipe" title="Cadastrar nova receita">Nova</a>
 			</h3>
 		<ol class="breadcrumb">
 			<li>
@@ -45,7 +45,7 @@
 						<th>
 							<i class="icon_cogs"></i>Ações</th>
 					</tr>
-					<tr id="{{recipe.id}}" ng-repeat="recipe in recipeCtrl.recipes">
+					<tr id="{{recipe.id}}" dir-paginate="recipe in recipeCtrl.recipes | itemsPerPage: 10">
 						<td>{{recipe.title}}</td>
 						<td>{{recipe.category.name}}</td>
 						<td><span ng-repeat="tag in recipe.tags">{{tag.name + ', '}} </span></td>
@@ -60,7 +60,6 @@
 				</tbody>
 			</table>
 		</section>
-		<!--<pagination ng-model="categoryCtrl.currentPage" total-items="categoryCtrl.totalItems" max-size="categoryCtrl.maxSize"
-		ng-change="categoryCtrl.pageChanged()" boundary-links="true"></pagination>-->
+		<dir-pagination-controls></dir-pagination-controls>
 	</div>
 </div>

@@ -16,7 +16,10 @@ module.exports = {
     'src' : 'app/js/**/*.js',
     'dest': 'build/js'
   },
-
+  'thirdPartyLibs': {
+    'src' : 'app/js/libs/**',
+    'dest': 'build/js'
+  },
   'images': {
     'src' : 'app/images/**/*',
     'dest': 'build/images'

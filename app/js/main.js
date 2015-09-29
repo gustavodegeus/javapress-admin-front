@@ -1,20 +1,14 @@
 'use strict';
-
 var angular = require('angular');
-
 // angular modules
 require('angular-ui-router');
 require('angular-bootstrap');
 require('ng-ui-select');
 require('angular-resource');
-//Workarround to TextAngular works
-window.rangy = require('rangy');
-window.rangy.saveSelection = require('rangy/lib/rangy-selectionsaverestore');
-require('textangular');
-require('textangular/dist/textAngular-rangy.min');
-require('textangular/dist/textAngular-sanitize.min');
 require('ng-tags-input');
 require('angular-drag-and-drop-lists');
+require('angular-utils-pagination');
+require('angular-ckeditor');
 require('./templates');
 require('./controllers/_index');
 require('./services/_index');
@@ -28,9 +22,10 @@ angular.element(document).ready(function() {
     'ui.bootstrap',
     'ui.select',
     'ngResource',
-    'textAngular',
     'ngTagsInput',
     'dndLists',
+    'angularUtils.directives.dirPagination',
+    'ckeditor',
     'templates',
     'app.controllers',
     'app.services',

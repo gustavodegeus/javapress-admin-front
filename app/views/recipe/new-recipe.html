@@ -18,10 +18,8 @@
 	<div class="col-lg-9">
 		<accordion close-others="true">
 			<accordion-group heading="Conteúdo" is-open="true" is-disabled="false">
-				<input id="recipe-title-input" type="text" ng-model="recipeCtrl.recipe.title" class="form-control" placeholder="Adicione o titulo aqui"></input>
-				<div>
-					<text-angular ng-model="recipeCtrl.recipe.content"></text-angular>
-				</div>
+				<input id="recipe-title-input" type="text" ng-model="recipeCtrl.recipe.title" class="form-control" placeholder="Adicione o titulo aqui"></input>				
+				<div ckeditor ng-model="recipeCtrl.recipe.content"></div>				
 			</accordion-group>
 			<accordion-group heading="Passos e Ingredientes" is-open="true" is-disabled="false">
 				<div class="row">

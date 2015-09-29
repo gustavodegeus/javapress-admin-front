@@ -12,6 +12,12 @@ function PostCtrl(CategoryService, PostService, $stateParams, $state) {
   vm.post = $stateParams.post != null ? $stateParams.post : {};
   vm.post.type = "POST";
 
+  vm.options = {
+    language: 'en',
+    allowedContent: true,
+    entities: false
+  };
+
   vm.saveAsDraft = function () {
     PostService.saveOrUpdate(vm.post).$promise.then(function () {
       $state.go('post');
