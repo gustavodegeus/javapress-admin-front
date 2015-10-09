@@ -9,6 +9,8 @@ require('ng-tags-input');
 require('angular-drag-and-drop-lists');
 require('angular-utils-pagination');
 require('angular-ckeditor');
+require('angular-jwt');
+require('angular-storage');
 require('./templates');
 require('./controllers/_index');
 require('./services/_index');
@@ -26,6 +28,8 @@ angular.element(document).ready(function() {
     'dndLists',
     'angularUtils.directives.dirPagination',
     'ckeditor',
+    'angular-jwt',
+    'angular-storage',
     'templates',
     'app.controllers',
     'app.services',

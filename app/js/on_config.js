@@ -3,21 +3,41 @@
 /**
  * @ngInject
  */
-function OnConfig($stateProvider, $locationProvider, $urlRouterProvider, $provide) {
+function OnConfig($stateProvider, $locationProvider, $urlRouterProvider, $httpProvider, jwtInterceptorProvider) {
 
+  jwtInterceptorProvider.tokenGetter = function (store) {
+    return store.get('jwt');
+  }
+  $httpProvider.interceptors.push('jwtInterceptor');
+  $httpProvider.interceptors.push('AuthInterceptor');
+    
   $locationProvider.html5Mode(true);
-
   $stateProvider
     .state('login', {
       url: '/login',
       templateUrl: 'login.html',
-      title: 'Login'
+      title: 'Login',
+      controller: 'LoginCtrl as loginCtrl',
+      data: {
+        requiresLogin: false
+      }
+    })
+    .state('error', {
+      url: '/error',
+      templateUrl: 'error.html',
+      title: 'Error',
+      data: {
+        requiresLogin: false
+      }
     })
     .state('app', {
       url: '/',
       templateUrl: 'home.html',
-      title: 'Home'
-    })    
+      title: 'Home',
+      data: {
+        requiresLogin: true
+      }
+    })
     .state('app.category', {
       url: 'category',
       controller: 'CategoryCtrl as categoryCtrl',
@@ -35,9 +55,9 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider, $provid
       controller: 'PostCtrl as postCtrl',
       templateUrl: 'post/new-post.html',
       title: 'Novo de post',
-      params: {post : null}
+      params: { post: null }
     })
-     .state('app.recipe', {
+    .state('app.recipe', {
       url: 'recipe',
       controller: 'RecipeCtrl as recipeCtrl',
       templateUrl: 'recipe/recipes.html',
@@ -48,7 +68,7 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider, $provid
       controller: 'RecipeCtrl as recipeCtrl',
       templateUrl: 'recipe/new-recipe.html',
       title: 'Nova receita',
-      params: {recipe : null}
+      params: { recipe: null }
     })
     .state('app.comments', {
       url: 'comments',
@@ -56,8 +76,8 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider, $provid
       templateUrl: 'comments/comments.html',
       title: 'Gerenciar comentários'
     });
-
-  $urlRouterProvider.otherwise('/');   
+    
+  $urlRouterProvider.otherwise('/');
 }
 
 module.exports = OnConfig;
