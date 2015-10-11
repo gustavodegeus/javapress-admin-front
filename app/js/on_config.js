@@ -7,11 +7,14 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider, $httpPr
 
   jwtInterceptorProvider.tokenGetter = function (store) {
     return store.get('jwt');
-  }
+  };
   $httpProvider.interceptors.push('jwtInterceptor');
   $httpProvider.interceptors.push('AuthInterceptor');
-    
-  $locationProvider.html5Mode(true);
+
+  $locationProvider.html5Mode({
+    enabled: true,
+    requireBase: false
+  });
   $stateProvider
     .state('login', {
       url: '/login',
@@ -76,7 +79,7 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider, $httpPr
       templateUrl: 'comments/comments.html',
       title: 'Gerenciar comentários'
     });
-    
+
   $urlRouterProvider.otherwise('/');
 }
 

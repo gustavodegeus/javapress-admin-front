@@ -17,7 +17,7 @@ module.exports = {
     'dest': 'build/js'
   },
   'thirdPartyLibs': {
-    'src' : 'app/js/libs/**',
+    'src' : 'app/libs/**',
     'dest': 'build/js'
   },
   'images': {

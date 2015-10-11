@@ -19,7 +19,8 @@ function CategoryCtrl($modal, $log, CategoryService) {
 
   vm.loadCategories = function (categories) {
     if (categories) {
-      return vm.categories = categories;
+      vm.categories = categories;
+      return;
     }
     vm.categories = CategoryService.Category.findAll();
   };
