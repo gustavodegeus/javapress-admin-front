@@ -57,7 +57,7 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider, $httpPr
       url: 'new-post',
       controller: 'PostCtrl as postCtrl',
       templateUrl: 'post/new-post.html',
-      title: 'Novo de post',
+      title: 'Novo post',
       params: { post: null }
     })
     .state('app.recipe', {
@@ -78,6 +78,12 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider, $httpPr
       controller: 'CommentCtrl as commentCtrl',
       templateUrl: 'comments/comments.html',
       title: 'Gerenciar comentários'
+    })
+    .state('app.ingredient', {
+      url: 'ingredient',
+      controller: 'IngredientCtrl as ingredientCtrl',
+      templateUrl: 'ingredient/ingredients.html',
+      title: 'Cadastro de Ingredientes'
     });
 
   $urlRouterProvider.otherwise('/');

@@ -1,0 +1,20 @@
+<div id="ingredient-modal">
+	<div class="modal-header">
+		<h3 class="modal-title">{{ingredientModalCtrl.title}}</h3>
+	</div>
+	<form id="ingredient-form" name="ingredientModalCtrl.ingredientForm">
+		<div class="modal-body ingredient-modal">
+			<div class="row">
+				<div class="col-md-2">Ingrediente:</div>
+				<div class="col-md-10" ng-class="{ 'has-error': ingredientForm.name.$invalid && ingredientForm.description.$dirty }">
+					<input id="ingredient-name-input" type="text" name="description" ng-model="ingredientModalCtrl.ingredient.description" class="form-control"
+					ng-required="true">
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-warning" ng-click="ingredientModalCtrl.cancel()">Cancelar</button>
+			<button id="save-ingredient-btn" class="btn btn-primary" ng-click="ingredientModalCtrl.saveIngredient()" ng-disabled="ingredientForm.$invalid">Salvar</button>
+		</div>
+	</form>
+</div>
